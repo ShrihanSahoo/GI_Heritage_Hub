@@ -1,4 +1,4 @@
-# 🏺 GI Heritage Hub
+#  GI Heritage Hub
 
 **A Verification-First Digital Trust Platform for Geographical Indication (GI) Tagged Products**
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 1. [Abstract & Executive Summary](#1-abstract--executive-summary)
 2. [Introduction to Geographical Indications](#2-introduction-to-geographical-indications)
