@@ -1,0 +1,343 @@
+
+{
+  "entities": {
+    "ArtisanProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ArtisanProfile",
+      "type": "object",
+      "description": "Represents the profile of an artisan on the marketplace.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Artisan Profile, typically the same as the userId."
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the artisan."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:1 ArtisanProfile)"
+        },
+        "craft": {
+          "type": "string",
+          "description": "The artisan's primary craft (e.g., pottery, weaving)."
+        },
+        "region": {
+          "type": "string",
+          "description": "The region the artisan is based in."
+        },
+        "story": {
+          "type": "string",
+          "description": "A narrative about the artisan's background and craft."
+        },
+        "imageId": {
+          "type": "string",
+          "description": "Reference to an image in the placeholder images file."
+        },
+        "giTagDetails": {
+          "type": "string",
+          "description": "Details related to the Government of India's GI tag verification, if applicable."
+        },
+        "sellerAuthenticityBadge": {
+          "type": "boolean",
+          "description": "Indicates if the artisan has been awarded the Seller Authenticity Badge."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "name",
+        "craft",
+        "region",
+        "story"
+      ]
+    },
+    "Product": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Product",
+      "type": "object",
+      "description": "Represents a product listed by an artisan.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Product."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly identifier for the product, same as ID."
+        },
+        "artisanId": {
+          "type": "string",
+          "description": "Reference to ArtisanProfile. (Relationship: ArtisanProfile 1:N Product)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the product."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the product."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the product."
+        },
+        "images": {
+          "type": "array",
+          "description": "Array of image URLs for the product.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imageId": {
+          "type": "string",
+          "description": "Reference to an image in the placeholder images file."
+        },
+        "craft": {
+          "type": "string",
+          "description": "The craft category of the product."
+        },
+        "region": {
+          "type": "string",
+          "description": "The region the product originates from."
+        },
+        "features": {
+          "type": "string",
+          "description": "Comma-separated list of product features."
+        },
+        "materials": {
+          "type": "string",
+          "description": "Materials used in the product."
+        },
+        "gi_tag": {
+          "type": "string",
+          "description": "Geographical Indication tag, if applicable."
+        }
+      },
+      "required": [
+        "id",
+        "artisanId",
+        "name",
+        "description",
+        "price"
+      ]
+    },
+    "CustomOrderRequest": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CustomOrderRequest",
+      "type": "object",
+      "description": "Represents a custom order request from a buyer to an artisan.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Custom Order Request."
+        },
+        "buyerId": {
+          "type": "string",
+          "description": "Reference to User (buyer). (Relationship: User 1:N CustomOrderRequest)"
+        },
+        "artisanId": {
+          "type": "string",
+          "description": "Reference to ArtisanProfile. (Relationship: ArtisanProfile 1:N CustomOrderRequest)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the custom order request."
+        },
+        "requirements": {
+          "type": "string",
+          "description": "Specific requirements for the custom order."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the custom order request (e.g., pending, accepted, rejected, completed)."
+        }
+      },
+      "required": [
+        "id",
+        "buyerId",
+        "artisanId",
+        "description",
+        "requirements",
+        "status"
+      ]
+    },
+    "ChatMessage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ChatMessage",
+      "type": "object",
+      "description": "Represents a message exchanged between a buyer and a seller.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Chat Message."
+        },
+        "senderId": {
+          "type": "string",
+          "description": "Reference to User (sender). (Relationship: User 1:N ChatMessage)"
+        },
+        "receiverId": {
+          "type": "string",
+          "description": "Reference to User (receiver). (Relationship: User 1:N ChatMessage)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Content of the message."
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of when the message was sent.",
+          "format": "date-time"
+        },
+        "translatedMessage": {
+          "type": "string",
+          "description": "Translated content of the message."
+        }
+      },
+      "required": [
+        "id",
+        "senderId",
+        "receiverId",
+        "message",
+        "timestamp"
+      ]
+    },
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the marketplace (either buyer or seller).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name."
+        },
+        "userType": {
+          "type": "string",
+          "description": "Type of user (e.g., 'buyer', 'seller')."
+        },
+        "googleId": {
+          "type": "string",
+          "description": "Google ID of the user, if they signed up with Google."
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "userType"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous",
+      "google.com"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles. Accessible only by the user themselves and admins. User Id is the firebase Auth UID",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user (Firebase Auth UID)."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/artisan_profiles/{artisanId}",
+        "definition": {
+          "entityName": "ArtisanProfile",
+          "schema": {
+            "$ref": "#/backend/entities/ArtisanProfile"
+          },
+          "description": "Stores artisan profiles. The userId is copied from the user document to establish ownership. Includes the artisan's craft, region, story, GI tag details, and seller authenticity badge status.",
+          "params": [
+            {
+              "name": "artisanId",
+              "description": "The unique identifier for the artisan profile, which should be the same as the user's UID."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/products/{productId}",
+        "definition": {
+          "entityName": "Product",
+          "schema": {
+            "$ref": "#/backend/entities/Product"
+          },
+          "description": "Stores all products listed by artisans. This is a root collection for easier querying of all products.",
+          "params": [
+            {
+              "name": "productId",
+              "description": "The unique identifier for the product."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/custom_order_requests/{customOrderRequestId}",
+        "definition": {
+          "entityName": "CustomOrderRequest",
+          "schema": {
+            "$ref": "#/backend/entities/CustomOrderRequest"
+          },
+          "description": "Stores custom order requests from buyers to artisans. Includes the buyer's ID, artisan's ID, description, requirements, and status of the request.",
+          "params": [
+            {
+              "name": "customOrderRequestId",
+              "description": "The unique identifier for the custom order request."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/chats/{chatId}/messages/{messageId}",
+        "definition": {
+          "entityName": "ChatMessage",
+          "schema": {
+            "$ref": "#/backend/entities/ChatMessage"
+          },
+          "description": "Stores chat messages between buyers and sellers. Each message includes the sender's ID, receiver's ID, message content, timestamp, and translated message (if applicable).  The chat document should include denormalized `buyerId` and `sellerId` to avoid subcollection group queries.",
+          "params": [
+            {
+              "name": "chatId",
+              "description": "The unique identifier for the chat."
+            },
+            {
+              "name": "messageId",
+              "description": "The unique identifier for the chat message."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support the Cultural Artisans Marketplace App. The key change is moving Products to a root collection `/products/{productId}` instead of a subcollection under artisans. This significantly simplifies querying for all products across all artisans, which is a primary access pattern for the marketplace (e.g., on the homepage and the main products page). While this denormalizes the artisan-product relationship slightly (each product document must still contain an `artisanId`), the performance and query flexibility gains are substantial. Security rules will ensure that only the correct artisan can create, update, or delete their own products by checking the `artisanId` field within the product document against their authenticated UID."
+  }
+}

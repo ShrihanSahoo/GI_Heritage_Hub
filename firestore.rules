@@ -1,0 +1,111 @@
+/**
+ * Core Philosophy: This ruleset enforces a multi-tiered security model for a cultural artisans marketplace.
+ * It provides public read access to marketplace content (artisan profiles, products) while strictly
+ * enforcing ownership for all write operations. Private, collaborative data like custom orders and chats
+ * are secured using a shared access model, ensuring only named participants can read or write the data.
+ * The default posture is deny-all, granting permissions explicitly for each data path.
+ *
+ * Data Structure:
+ * - /users/{userId}: Private user documents, one per user.
+ * - /artisan_profiles/{artisanId}: Public-facing profiles for sellers.
+ * - /products/{productId}: A root collection for all products.
+ * - /custom_order_requests/{customOrderRequestId}: Private records shared between a specific buyer and artisan.
+ * - /chats/{chatId}/messages/{messageId}: Private messages within a chat. Access is controlled by the parent /chats document.
+ *
+ * Key Security Decisions:
+ * - Root `products` collection: Products are in a root collection for easy querying of all products. Security is maintained by checking the `artisanId` field on each product document during write operations.
+ * - Public vs. Private Data: Artisan profiles and their products are publicly readable to facilitate a marketplace experience.
+ *   All other collections (`users`, `custom_order_requests`, `chats`) are private and require authentication and specific authorization.
+ * - User Privacy: Listing users from the top-level `/users` collection is explicitly forbidden to protect user privacy.
+ * - Ownership: All write operations on artisan profiles and products are strictly limited to the user designated as the owner.
+ * - Shared Access: Custom orders and chats are accessible only to the direct participants (e.g., buyer and artisan) as defined
+ *   by denormalized UID fields on the documents themselves.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**************************************************************
+     * Helper Functions
+     **************************************************************/
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    function isOrderParticipant(orderData) {
+      let isBuyer = isOwner(orderData.buyerId);
+      // Assumes artisanId on the order is the artisan's user ID.
+      let isArtisanUser = isOwner(orderData.artisanId);
+      return isBuyer || isArtisanUser;
+    }
+
+    function isChatParticipant(chatId) {
+      let chatDoc = get(/databases/$(database)/documents/chats/$(chatId));
+      return isSignedIn() && (request.auth.uid == chatDoc.data.buyerId || request.auth.uid == chatDoc.data.sellerId);
+    }
+
+    /**************************************************************
+     * Collection Rules
+     **************************************************************/
+
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    match /artisan_profiles/{artisanId} {
+      allow get: if true;
+      allow list: if true;
+      // An artisan profile can only be created by the user it belongs to.
+      allow create: if isOwner(request.resource.data.userId) && request.resource.data.id == request.auth.uid;
+      // Only the owner can update their profile, and they cannot change the userId.
+      allow update: if isExistingOwner(resource.data.userId) && request.resource.data.userId == resource.data.userId;
+      allow delete: if isExistingOwner(resource.data.userId);
+    }
+
+    match /products/{productId} {
+        allow get: if true;
+        allow list: if true;
+        // A user can create a product if they are signed in and the product's artisanId is their own UID.
+        allow create: if isSignedIn() && request.resource.data.artisanId == request.auth.uid;
+        // An existing product can be updated only by its owner (artisan). The artisanId cannot be changed.
+        allow update: if resource != null && isOwner(resource.data.artisanId) && request.resource.data.artisanId == resource.data.artisanId;
+        // Only the owner (artisan) can delete their product.
+        allow delete: if resource != null && isOwner(resource.data.artisanId);
+    }
+    
+    match /custom_order_requests/{customOrderRequestId} {
+      allow get, list: if isSignedIn() && isOrderParticipant(resource.data);
+      allow create: if isOwner(request.resource.data.buyerId);
+      allow update: if resource != null && isOrderParticipant(resource.data) && request.resource.data.buyerId == resource.data.buyerId && request.resource.data.artisanId == resource.data.artisanId;
+      allow delete: if resource != null && isOwner(resource.data.buyerId);
+    }
+
+    match /chats/{chatId} {
+      allow get: if isChatParticipant(chatId);
+      allow list: if false;
+      allow create: if isSignedIn() && (isOwner(request.resource.data.buyerId) || isOwner(request.resource.data.sellerId));
+      allow update: if resource != null && isChatParticipant(chatId);
+      allow delete: if false;
+    }
+    
+    match /chats/{chatId}/messages/{messageId} {
+      allow get: if isChatParticipant(chatId);
+      allow list: if isChatParticipant(chatId);
+      allow create: if isChatParticipant(chatId) && isOwner(request.resource.data.senderId);
+      allow update: if resource != null && isOwner(resource.data.senderId) && request.resource.data.senderId == resource.data.senderId;
+      allow delete: if resource != null && isOwner(resource.data.senderId);
+    }
+  }
+}

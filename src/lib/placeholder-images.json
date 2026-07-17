@@ -1,0 +1,154 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-pottery",
+      "description": "An artisan shaping clay on a potter's wheel.",
+      "imageUrl": "https://images.unsplash.com/photo-1699371830857-79a33247b2c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwb3R0ZXJ5JTIwYXJ0aXNhbnxlbnwwfHx8fDE3NjQyODczNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pottery artisan"
+    },
+    {
+      "id": "terracotta-vase",
+      "description": "A beautifully crafted terracotta vase with intricate carvings.",
+      "imageUrl": "https://images.unsplash.com/photo-1676030788890-08b6a1cb11ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZXJyYWNvdGElMjB2YXNlfGVufDB8fHx8MTc2Nzc5MTE4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "terracotta vase"
+    },
+    {
+      "id": "madhubani-painting",
+      "description": "A vibrant Madhubani painting depicting nature and mythology.",
+      "imageUrl": "https://images.unsplash.com/photo-1745195734388-db01e755ebb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYWRodWJhbmklMjBwYWludGluZ3xlbnwwfHx8fDE3Njc3OTEzMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "madhubani painting"
+    },
+    {
+      "id": "pashmina-shawl",
+      "description": "A soft, luxurious Pashmina shawl with delicate embroidery.",
+      "imageUrl": "https://images.unsplash.com/photo-1759599870816-8419bf6b58a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8cGFzaG1pbmElMjBzaGF3bHxlbnwwfHx8fDE3Njc3OTE0MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pashmina shawl"
+    },
+    {
+      "id": "wooden-elephant",
+      "description": "A hand-carved wooden elephant figurine with fine details.",
+      "imageUrl": "https://images.unsplash.com/photo-1739281468485-dfb4231a004d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b29kZW4lMjBlbGVwaGFudHxlbnwwfHx8fDE3Njc3OTE2MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wooden elephant"
+    },
+    {
+      "id": "blue-pottery-plate",
+      "description": "A decorative plate made with Jaipur Blue Pottery technique.",
+      "imageUrl": "https://images.unsplash.com/photo-1657395330773-51e704ced2ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxibHVlJTIwcG90dGVyeXxlbnwwfHx8fDE3NjQzMDk1NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue pottery"
+    },
+    {
+      "id": "leather-mojari",
+      "description": "Handcrafted leather Mojari footwear with traditional embroidery.",
+      "imageUrl": "https://images.unsplash.com/photo-1625357165350-bdbcb6d7d524?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsZWF0aGVyJTIwc2hvZXN8ZW58MHx8fHwxNzY0MzA5NTc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather shoes"
+    },
+    {
+      "id": "pattachitra-painting",
+      "description": "An intricate Pattachitra painting from Odisha.",
+      "imageUrl": "https://images.unsplash.com/photo-1637166404565-bf4ff5415a6f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwYXRhY2hpdHJhJTIwcGFpbnRpbmd8ZW58MHx8fHwxNzY3NzY0MjEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pattachitra art"
+    },
+    {
+      "id": "artisan-meera",
+      "description": "Portrait of Meera, a textile artisan from Gujarat.",
+      "imageUrl": "https://images.unsplash.com/photo-1561578428-c59823044e25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8dGV4dGlsZXN8ZW58MHx8fHwxNzY3Nzg4OTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "indian woman portrait"
+    },
+    {
+      "id": "artisan-raj",
+      "description": "Portrait of Raj, a potter and woodcarver from Rajasthan.",
+      "imageUrl": "https://images.unsplash.com/photo-1620140036708-455ed5c0426a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwb3R0ZXJ5fGVufDB8fHx8MTc2Nzc1ODc2MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pottery artisan"
+    },
+    {
+      "id": "artisan-sunita",
+      "description": "Portrait of Sunita, a Madhubani painter from Bihar.",
+      "imageUrl": "https://images.unsplash.com/photo-1523512271272-563d615c3af6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y3VsdHVyYWwlMjB3b21lbnxlbnwwfHx8fDE3Njg4OTI2Nzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan woman"
+    },
+    {
+      "id": "artisan-gita",
+      "description": "Portrait of Gita, a Blue Pottery artisan from Jaipur.",
+      "imageUrl": "https://images.unsplash.com/photo-1607160913575-9854cbecca02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxqYWlwdXIlMjBhcnRpc2FufGVufDB8fHx8MTc2NDQ3MTUwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "jaipur artisan"
+    },
+    {
+      "id": "artisan-ahmed",
+      "description": "Portrait of Ahmed, a leatherwork artisan from Jodhpur.",
+      "imageUrl": "https://images.unsplash.com/photo-1759523069474-3c45494a6679?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsZWF0aGVyJTIwYXJ0aXNhbnxlbnwwfHx8fDE3NjQ0NzE1MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather artisan"
+    },
+    {
+      "id": "artisan-shrihan",
+      "description": "Portrait of Shrihan, a metalwork artisan from Chhattisgarh.",
+      "imageUrl": "https://images.unsplash.com/photo-1599388373142-d6a50e18b456?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibGFja3NtaXRoJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzY0OTY0NjI3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blacksmith portrait"
+    },
+    {
+      "id": "dhokra-bull",
+      "description": "A Dhokra art Nandi bull sculpture.",
+      "imageUrl": "https://images.unsplash.com/photo-1675713437194-e86915003a28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiaG9rcmElMjBhcnR8ZW58MHx8fHwxNzY0NzM3NzUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dhokra art"
+    },
+    {
+      "id": "artisan-profile-banner",
+      "description": "A vibrant display of various Indian handicrafts.",
+      "imageUrl": "https://images.unsplash.com/photo-1669556273167-8d4679c4f082?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxpbmRpYW4lMjB0ZXh0aWxlc3xlbnwwfHx8fDE3NjQzMDk1NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "indian textiles"
+    },
+    {
+      "id": "region-rajasthan",
+      "description": "A fort in Rajasthan.",
+      "imageUrl": "https://images.unsplash.com/photo-1677649117932-4c8abf3e27bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyYWphc3RoYW4lMjBmb3J0fGVufDB8fHx8MTc2Nzc4OTkxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rajasthan fort"
+    },
+    {
+      "id": "region-gujarat",
+      "description": "Embroidery from Gujarat.",
+      "imageUrl": "https://picsum.photos/seed/gujarat/400/500",
+      "imageHint": "gujarat embroidery"
+    },
+    {
+      "id": "region-kashmir",
+      "description": "A landscape in Kashmir.",
+      "imageUrl": "https://images.unsplash.com/photo-1622642897052-9410411a798a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxrYXNobWlyJTIwbGFuZHNjYXBlfGVufDB8fHx8MTc2Nzc4OTkxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kashmir landscape"
+    },
+    {
+      "id": "region-bihar",
+      "description": "A temple in Bihar.",
+      "imageUrl": "https://images.unsplash.com/photo-1635344594194-8c3e5c77fc57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxiaWhhciUyMHRlbXBsZXxlbnwwfHx8fDE3Njc3ODk5MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bihar temple"
+    },
+    {
+      "id": "region-odisha",
+      "description": "A temple in Odisha.",
+      "imageUrl": "https://images.unsplash.com/photo-1597505686823-233a95175f40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvZGlzaGElMjB0ZW1wbGV8ZW58MHx8fHwxNzY3Nzg5OTEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "odisha temple"
+    },
+    {
+      "id": "region-bengal",
+      "description": "Terracotta from West Bengal.",
+      "imageUrl": "https://images.unsplash.com/photo-1613868753421-35c598522528?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiZW5nYWwlMjB0ZXJyYWNvdHRhfGVufDB8fHx8MTc2Nzc4OTkxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bengal terracotta"
+    },
+    {
+      "id": "region-tamilnadu",
+      "description": "A temple in Tamil Nadu.",
+      "imageUrl": "https://images.unsplash.com/photo-1686310894901-d326b8722c13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0YW1pbG5hZHUlMjB0ZW1wbGV8ZW58MHx8fHwxNzY3Nzg5OTEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tamilnadu temple"
+    },
+    {
+      "id": "region-karnataka",
+      "description": "Stone carving in Karnataka.",
+      "imageUrl": "https://images.unsplash.com/photo-1766327562107-8723a4a04f13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxrYXJuYXRha2ElMjBzdG9uZSUyMGNhcnZpbmd8ZW58MHx8fHwxNzY3Nzg5OTEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "karnataka stone carving"
+    },
+    {
+      "id": "region-maharashtra",
+      "description": "Caves in Maharashtra.",
+      "imageUrl": "https://images.unsplash.com/photo-1588064632996-d8fa3635745b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYWhhcmFzaHRyYSUyMGNhdmVzfGVufDB8fHx8MTc2Nzc4OTkxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "maharashtra caves"
+    }
+  ]
+}
