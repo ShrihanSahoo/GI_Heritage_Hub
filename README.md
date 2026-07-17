@@ -32,3 +32,4 @@ GI Heritage Hub solves three core problems:
 This application uses a **Hybrid-Resilient Engine**. It gracefully merges live Firestore data with curated local mocks, ensuring the marketplace is always vibrant even if the backend is disconnected.
 # GI_Heritage_Hub
 # GI_Heritage_Hub
+# GI_Heritage_Hub
