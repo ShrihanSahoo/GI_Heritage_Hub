@@ -88,7 +88,7 @@ service cloud.firestore {
     match /custom_order_requests/{customOrderRequestId} {
       allow get, list: if isSignedIn() && isOrderParticipant(resource.data);
       allow create: if isOwner(request.resource.data.buyerId);
-      allow update: if resource != null && isOrderParticipant(resource.data) && request.resource.data.buyerId == resource.data.buyerId && request.resource.data.artisanId == resource.data.artisanId;
+      allow update: if resource != null && isOrderParticipant(resource.data) && request.resource.data.buyerId == resource.data.buyerId && request.resource.data.artisanId == resource.data.artisanId && (isOwner(resource.data.artisanId) || (isOwner(resource.data.buyerId) && request.resource.data.status == resource.data.status && request.resource.data.price == resource.data.price));
       allow delete: if resource != null && isOwner(resource.data.buyerId);
     }
 

@@ -85,7 +85,7 @@ export default function NewProductPage() {
 
   const currentSchema = stepSchemas[step];
   const form = useForm<FormData>({
-    resolver: zodResolver(currentSchema),
+    resolver: zodResolver(currentSchema as any),
     mode: 'onChange',
     defaultValues: {
       availability: 'in_stock'
@@ -111,7 +111,7 @@ export default function NewProductPage() {
     setStep((prev) => prev - 1);
   };
   
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: any) => {
      if (!user || !firestore) {
       toast({ variant: 'destructive', title: t('Error'), description: t('You must be logged in as a seller.') });
       return;

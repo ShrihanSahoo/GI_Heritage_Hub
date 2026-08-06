@@ -20,6 +20,8 @@ export type Product = {
   craft: Translatable;
   gi_tag: Translatable | null;
   description: Translatable;
+  materials?: Translatable | string;
+  makingTechnique?: Translatable | string;
 };
 
 export type Artisan = {
