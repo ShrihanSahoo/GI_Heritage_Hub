@@ -2,7 +2,7 @@
 
 **A Verification-First Digital Trust Platform for Geographical Indication (GI) Tagged Products**
 
-> Built for **Ascendant 2026 Hackathon**
+> A self iniative.
 
 ---
 
