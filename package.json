@@ -2,6 +2,7 @@
   "name": "nextn",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": "20.x" },
   "scripts": {
     "dev": "next dev",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
@@ -50,7 +51,7 @@
     "genkit": "^1.20.0",
     "handlebars": "^4.7.9",
     "lucide-react": "^0.475.0",
-    "next": "^15.5.22",
+    "next": "15.5.2",
     "patch-package": "^8.0.0",
     "protobufjs": "^8.7.1",
     "react": "19.2.1",
