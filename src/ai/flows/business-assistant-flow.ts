@@ -60,7 +60,7 @@ const businessAssistantFlow = ai.defineFlow(
     inputSchema: BusinessAssistantInputSchema,
     outputSchema: BusinessAssistantOutputSchema,
   },
-  async (input) => {
+  async (input: BusinessAssistantInput) => {
     const { output } = await prompt(input);
     return output!;
   }

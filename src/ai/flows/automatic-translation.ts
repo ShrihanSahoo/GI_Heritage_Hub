@@ -40,7 +40,7 @@ const automaticTranslationFlow = ai.defineFlow(
     inputSchema: AutomaticTranslationInputSchema,
     outputSchema: AutomaticTranslationOutputSchema,
   },
-  async input => {
+  async (input: AutomaticTranslationInput) => {
     const {output} = await prompt(input);
     return output!;
   }

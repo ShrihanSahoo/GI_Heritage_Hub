@@ -51,7 +51,7 @@ const aiProductDescriptionFlow = ai.defineFlow(
     inputSchema: AIProductDescriptionInputSchema,
     outputSchema: AIProductDescriptionOutputSchema,
   },
-  async input => {
+  async (input: AIProductDescriptionInput) => {
     const {output} = await prompt(input);
     return output!;
   }

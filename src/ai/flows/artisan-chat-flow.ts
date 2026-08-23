@@ -49,7 +49,7 @@ const artisanChatFlow = ai.defineFlow(
     inputSchema: ArtisanChatInputSchema,
     outputSchema: ArtisanChatOutputSchema,
   },
-  async (input) => {
+  async (input: ArtisanChatInput) => {
     const { output } = await prompt(input);
     return output!;
   }

@@ -46,7 +46,7 @@ const artisanStoryGenerationFlow = ai.defineFlow(
     inputSchema: ArtisanStoryInputSchema,
     outputSchema: ArtisanStoryOutputSchema,
   },
-  async input => {
+  async (input: ArtisanStoryInput) => {
     const {output} = await prompt(input);
     return output!;
   }

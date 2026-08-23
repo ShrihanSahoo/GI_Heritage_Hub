@@ -60,7 +60,7 @@ const siteAssistantFlow = ai.defineFlow(
     inputSchema: SiteAssistantInputSchema,
     outputSchema: SiteAssistantOutputSchema,
   },
-  async (input) => {
+  async (input: SiteAssistantInput) => {
     const { output } = await prompt(input);
     return output!;
   }
