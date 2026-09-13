@@ -300,14 +300,12 @@ export function LandingVisionPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="flex justify-center mb-12"
+            className="flex justify-center mb-8"
           >
-            <img 
-              src="https://picsum.photos/seed/heritage-standard/400/120" 
-              alt="International Heritage Standard" 
-              className="h-20 opacity-60 grayscale brightness-125"
-              data-ai-hint="heritage logo"
-            />
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold text-sm tracking-wider uppercase">
+              <Globe className="h-5 w-5" />
+              <span>International Heritage Framework</span>
+            </div>
           </motion.div>
           <Quote className="h-16 w-16 text-primary/30 mx-auto mb-8" />
           <blockquote className="text-3xl md:text-5xl font-headline font-medium italic text-muted-foreground leading-[1.2] mb-12 tracking-tight">
