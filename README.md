@@ -262,7 +262,7 @@ GI Heritage Hub represents a structural shift in how digital commerce can suppor
 
 ---
 
-
+(For more info, refer to- info.md)
 
 **Written by Shrihan Sahoo**
 shrihan.edu@gmail.com
