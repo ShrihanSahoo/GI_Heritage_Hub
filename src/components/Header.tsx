@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { User, Languages, Check, ScrollText, ShoppingCart, Heart, Crown } from 'lucide-react';
+import { User, Languages, Check, ScrollText, ShoppingCart, Heart, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from './icons';
 import {
@@ -65,18 +65,6 @@ export function Header() {
               {t('Our Mission')}
             </Link>
           </Button>
-
-          {isArtisan && (
-            <Button variant="ghost" asChild className={cn(
-              "hidden lg:flex text-xs font-black uppercase tracking-[0.2em] transition-all",
-              pathname === '/premium' ? "text-accent border-b-2 border-accent rounded-none h-20" : "text-muted-foreground hover:text-accent"
-            )}>
-              <Link href="/premium" className="flex items-center gap-2">
-                <Crown className="h-4 w-4 fill-accent text-accent" />
-                {t('Premium Hub')}
-              </Link>
-            </Button>
-          )}
         </div>
 
         {/* Center: Primary Actions (Auth) */}
@@ -97,13 +85,11 @@ export function Header() {
                  <DropdownMenuItem asChild>
                   <Link href="/account" className="cursor-pointer">{t('Dashboard')}</Link>
                 </DropdownMenuItem>
-                {isArtisan && (
-                  <DropdownMenuItem asChild>
-                    <Link href="/premium" className="cursor-pointer font-bold text-accent">
-                      <Crown className="mr-2 h-3 w-3 fill-accent" /> {t('Premium Hub')}
-                    </Link>
-                  </DropdownMenuItem>
-                )}
+                <DropdownMenuItem asChild>
+                  <Link href="/chat" className="cursor-pointer font-medium text-primary flex items-center">
+                    <MessageSquare className="mr-2 h-4 w-4" /> {t('Artisan Chat')}
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/account/my-profile" className="cursor-pointer">{t('Public Profile')}</Link>
                 </DropdownMenuItem>
