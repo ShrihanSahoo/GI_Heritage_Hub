@@ -81,6 +81,71 @@ export default function ProductPage({ params }: ProductPageProps) {
 
   const isCollected = product ? isInWishlist(product.id) : false;
 
+  // Curated, 100% authentic craft example images matching each craft & product
+  const craftGalleryMap: Record<string, string[]> = {
+    // Molela Clay Terracotta Vase: Studio sculpture, close-up carved clay relief, master potter shaping clay
+    'mock-1': [
+      '/craft-gallery/terracotta-1.jpg',
+      '/craft-gallery/terracotta-2.jpg',
+      '/craft-gallery/terracotta-3.jpg',
+    ],
+    // Madhubani "Tree of Life": Fine linework & bird motifs, artisan painting with natural pigments, framed gallery display
+    'mock-2': [
+      '/craft-gallery/madhubani-1.jpg',
+      '/craft-gallery/madhubani-2.jpg',
+      '/craft-gallery/madhubani-3.jpg',
+    ],
+    // Kashmiri Pashmina Shawl: Authentic Kashmiri woven pashmina, delicate sozni embroidery closeups
+    'mock-3': [
+      '/craft-gallery/pashmina-1.jpg',
+      '/craft-gallery/pashmina-2.jpg',
+      '/craft-gallery/pashmina-3.jpg',
+    ],
+    // Hand-Carved Wooden Elephant: Hand-carved Indian wooden elephant, traditional Rajasthani wood carving
+    'mock-4': [
+      '/craft-gallery/wooden-elephant-1.jpg',
+      '/craft-gallery/wooden-elephant-2.jpg',
+      '/craft-gallery/wooden-elephant-3.jpg',
+    ],
+    // Jaipur Blue Pottery Plate: Traditional Jaipur cobalt blue floral pottery plates, glazed ceramic vessels
+    'mock-5': [
+      '/craft-gallery/blue-pottery-1.jpg',
+      '/craft-gallery/blue-pottery-2.jpg',
+      '/craft-gallery/blue-pottery-3.jpg',
+    ],
+    // Handcrafted Leather Mojari: Authentic Jodhpuri leather juttis with traditional gold embroidery and craftsmanship
+    'mock-6': [
+      '/craft-gallery/mojari-1.jpg',
+      '/craft-gallery/mojari-2.jpg',
+      '/craft-gallery/mojari-3.jpg',
+    ],
+    // Odisha Pattachitra Painting: Intricate cloth scroll paintings, traditional mythological artwork
+    'pattachitra-painting-1': [
+      '/craft-gallery/pattachitra-1.jpg',
+      '/craft-gallery/pattachitra-2.jpg',
+      '/craft-gallery/pattachitra-3.jpg',
+    ],
+  };
+
+  const galleryImages = (product as any)?.galleryImages || (product ? craftGalleryMap[product.id] || craftGalleryMap[product.slug] : null) || [
+    '/craft-gallery/terracotta-1.jpg',
+    '/craft-gallery/terracotta-2.jpg',
+    '/craft-gallery/terracotta-3.jpg',
+  ];
+
+  const initialMainImage = (product ? PlaceHolderImages.find((img) => img.id === product.imageId)?.imageUrl : '') || 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=800&q=80';
+  const [activeImage, setActiveImage] = useState<string>(initialMainImage);
+
+  // Sync activeImage whenever product image resolves
+  React.useEffect(() => {
+    if (product) {
+      const img = PlaceHolderImages.find((i) => i.id === product.imageId);
+      if (img?.imageUrl) {
+        setActiveImage(img.imageUrl);
+      }
+    }
+  }, [product?.imageId]);
+
   if (isLoadingProduct || isLoadingArtisan) {
     return (
       <div className="container mx-auto py-32 text-center">
@@ -98,6 +163,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   
   const productImage = PlaceHolderImages.find((img) => img.id === product.imageId);
   const artisanImage = PlaceHolderImages.find((img) => img.id === artisan?.imageId);
+  const mainImageUrl = productImage?.imageUrl || initialMainImage;
 
   const handleAddToCart = () => {
     if (!artisan) return;
@@ -156,16 +222,14 @@ export default function ProductPage({ params }: ProductPageProps) {
               animate={{ opacity: 1, scale: 1 }}
               className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white group"
             >
-              {productImage && (
-                <Image
-                  src={productImage.imageUrl}
-                  alt={t(product.name)}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  data-ai-hint={productImage.imageHint}
-                  priority
-                />
-              )}
+              <Image
+                src={activeImage}
+                alt={t(product.name)}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                data-ai-hint={productImage?.imageHint || 'Indian craft detail'}
+                priority
+              />
               {product.gi_tag && (
                 <div className="absolute top-6 left-6 z-10">
                    <Badge className="bg-accent text-accent-foreground px-4 py-2 text-sm font-black shadow-lg rounded-full flex items-center gap-2">
@@ -177,21 +241,45 @@ export default function ProductPage({ params }: ProductPageProps) {
             </motion.div>
             
             <div className="grid grid-cols-4 gap-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="aspect-square relative rounded-2xl overflow-hidden border-2 border-muted hover:border-primary transition-colors cursor-pointer">
+              {/* Main image thumbnail */}
+              <div 
+                onClick={() => setActiveImage(mainImageUrl)}
+                className={cn(
+                  "aspect-square relative rounded-2xl overflow-hidden border-2 transition-all cursor-pointer",
+                  activeImage === mainImageUrl ? "border-primary ring-2 ring-primary/30" : "border-muted hover:border-primary/50 opacity-75 hover:opacity-100"
+                )}
+                title="Primary angle"
+              >
+                <Image
+                  src={mainImageUrl}
+                  alt={t(product.name)}
+                  fill
+                  sizes="(max-width: 768px) 25vw, 150px"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Authentic craft example thumbnails */}
+              {galleryImages.slice(0, 3).map((imgUrl: string, idx: number) => (
+                <div 
+                  key={idx} 
+                  onClick={() => setActiveImage(imgUrl)}
+                  className={cn(
+                    "aspect-square relative rounded-2xl overflow-hidden border-2 transition-all cursor-pointer",
+                    activeImage === imgUrl ? "border-primary ring-2 ring-primary/30" : "border-muted hover:border-primary/50 opacity-75 hover:opacity-100"
+                  )}
+                  title={`Craft detail ${idx + 1}`}
+                >
                    <Image
-                    src={`https://picsum.photos/seed/${product.id}${i}/400/400`}
-                    alt="Detail view"
+                    src={imgUrl}
+                    alt={`Craft detail view ${idx + 1}`}
                     fill
+                    sizes="(max-width: 768px) 25vw, 150px"
+                    loading="lazy"
                     className="object-cover"
-                    data-ai-hint={productImage?.imageHint}
                   />
                 </div>
               ))}
-              <div className="aspect-square bg-muted rounded-2xl flex flex-col items-center justify-center text-center p-2 text-muted-foreground border-2 border-dashed">
-                <Info className="h-6 w-6 mb-1" />
-                <span className="text-[10px] font-bold uppercase">{t('Craft Specs')}</span>
-              </div>
             </div>
           </div>
 

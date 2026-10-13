@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { Mail, MessageSquare, PlusCircle } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
@@ -36,10 +36,17 @@ type ArtisanPageProps = {
 export default function ArtisanPage({ params }: ArtisanPageProps) {
   const { t } = useTranslation();
   const resolvedParams = use(params);
+  const router = useRouter();
   const { firestore, user } = useFirebase();
   const [customRequest, setCustomRequest] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const handleInitiateChat = () => {
+    if (artisan) {
+      router.push(`/chat?artisanId=${artisan.id}`);
+    }
+  };
 
   // The slug can be the artisan's ID, so we fetch from artisan_profiles collection
   const artisanRef = useMemoFirebase(
@@ -177,7 +184,7 @@ export default function ArtisanPage({ params }: ArtisanPageProps) {
               <p className="text-md text-muted-foreground">{t(artisan.region)}</p>
             </div>
             <div className="mt-4 md:mt-0 md:pb-4 flex flex-col sm:flex-row gap-2 flex-shrink-0">
-              <Button>
+              <Button onClick={handleInitiateChat}>
                 <MessageSquare className="mr-2 h-4 w-4" /> {t('Message')}
               </Button>
               <Dialog>

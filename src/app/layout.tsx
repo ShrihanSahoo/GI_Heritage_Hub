@@ -10,7 +10,7 @@ import { LanguageProvider } from '@/context/LanguageContext';
 import { WishlistProvider } from '@/context/WishlistContext';
 import { FloatingAssistant } from '@/components/FloatingAssistant';
 import { FloatingNavigation } from '@/components/FloatingNavigation';
-
+import { Analytics } from '@vercel/analytics/react';
 export const metadata: Metadata = {
   title: 'GI Heritage Hub | India\'s Authentic Craft Marketplace',
   description: 'A verified marketplace for authentic Indian handcrafted goods protected by Geographical Indication (GI) tags.',
@@ -39,14 +39,15 @@ export default function RootLayout({
         <FirebaseClientProvider>
           <LanguageProvider>
             <CartProvider>
-                <WishlistProvider>
-                    <Header />
-                    <main className="flex-grow">{children}</main>
-                    <Footer />
-                    <FloatingNavigation />
-                    <FloatingAssistant />
-                    <Toaster />
-                </WishlistProvider>
+              <WishlistProvider>
+                <Header />
+                <main className="flex-grow">{children}</main>
+                <Footer />
+                <FloatingNavigation />
+                <FloatingAssistant />
+                <Toaster />
+                <Analytics />
+              </WishlistProvider>
             </CartProvider>
           </LanguageProvider>
         </FirebaseClientProvider>
