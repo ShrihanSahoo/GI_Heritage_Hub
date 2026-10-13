@@ -150,20 +150,21 @@ function ChatContent() {
         const aiInput: ArtisanChatInput = {
             userMessage: input,
             artisan: {
-                id: selectedArtisan.id,
-                name: t(selectedArtisan.name),
-                craft: t(selectedArtisan.craft),
-                region: t(selectedArtisan.region),
-                story: t(selectedArtisan.story),
+                id: selectedArtisan.id || 'artisan',
+                name: t(selectedArtisan.name) || 'Artisan Master',
+                craft: t(selectedArtisan.craft) || 'Heritage Craft',
+                region: t(selectedArtisan.region) || 'India',
+                story: t(selectedArtisan.story) || 'Preserving centuries-old cultural craftsmanship.',
             },
             products: (selectedArtisan.products || []).map(p => ({
-                id: p.id,
-                name: t(p.name),
-                price: p.price,
-                description: t(p.description),
-                craft: t(p.craft)
+                id: p.id || 'product',
+                name: t(p.name) || 'Handcrafted item',
+                price: Number(p.price) || 0,
+                description: t(p.description) || 'Traditional handmade artifact.',
+                craft: t(p.craft) || 'Handicraft'
             })),
         };
+
 
         const result = await chatWithArtisan(aiInput);
 
