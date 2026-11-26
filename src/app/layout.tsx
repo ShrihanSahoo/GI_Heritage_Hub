@@ -11,9 +11,39 @@ import { WishlistProvider } from '@/context/WishlistContext';
 import { FloatingAssistant } from '@/components/FloatingAssistant';
 import { FloatingNavigation } from '@/components/FloatingNavigation';
 import { Analytics } from '@vercel/analytics/react';
+import { getSiteUrl } from '@/lib/site-url';
+
 export const metadata: Metadata = {
-  title: 'GI Heritage Hub | India\'s Authentic Craft Marketplace',
-  description: 'A verified marketplace for authentic Indian handcrafted goods protected by Geographical Indication (GI) tags.',
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: "GI Heritage Hub | India's Authentic Craft Marketplace",
+    template: '%s | GI Heritage Hub',
+  },
+  description:
+    'A verified marketplace for authentic Indian handcrafted goods protected by Geographical Indication (GI) tags.',
+  keywords: [
+    'GI Heritage Hub',
+    'Geographical Indication India',
+    'Indian handicrafts',
+    'authentic Indian crafts',
+    'Indian artisans',
+    'Madhubani painting',
+    'Kashmiri Pashmina',
+    'Jaipur Blue Pottery',
+    'Pattachitra',
+  ],
+  openGraph: {
+    type: 'website',
+    siteName: 'GI Heritage Hub',
+    title: "GI Heritage Hub | India's Authentic Craft Marketplace",
+    description:
+      'Discover and support master Indian artisans creating Geographical Indication (GI) certified crafts.',
+    url: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   verification: {
     google: 'm4P3-V36Q3zCMrbXn85Mtlf8eyWugFNWdwDrcH-Hszs',
   },
