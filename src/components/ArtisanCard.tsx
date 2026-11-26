@@ -4,7 +4,7 @@ import type { Artisan } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from './ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface ArtisanCardProps {
@@ -44,11 +44,19 @@ export function ArtisanCard({ artisan }: ArtisanCardProps) {
           {t(artisan.craft)}
         </p>
         <p className="text-sm text-muted-foreground">{t(artisan.region)}</p>
-        <Button variant="outline" size="sm" asChild className="mt-4">
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <Button variant="outline" size="sm" asChild>
             <Link href={`/artisans/${slug}`}>
-                {t('View Profile')} <ArrowRight className="ml-2 h-4 w-4" />
+              {t('View Profile')} <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Link>
-        </Button>
+          </Button>
+          <Button size="sm" variant="secondary" asChild className="gap-1.5">
+            <Link href={`/chat?artisanId=${artisan.id}`}>
+              <MessageSquare className="h-3.5 w-3.5" />
+              {t('Chat')}
+            </Link>
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

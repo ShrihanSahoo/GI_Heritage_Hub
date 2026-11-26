@@ -48,7 +48,7 @@ Genkit v1.x introduced significant API changes. This section covers critical syn
   ```
 - **DEPRECATED**: Versioned legacy models (like `gemini-1.5-flash` or `gemini-2.5-flash`) should be updated to latest aliases.
   ```ts
-  model: googleAI.model('gemini-1.5-flash') // DEPRECATED (Use gemini-flash-latest instead)
+  model: googleAI.model('gemini-3.8-flash') // DEPRECATED (Use gemini-flash-latest instead)
   ```
 
 ### Response Access

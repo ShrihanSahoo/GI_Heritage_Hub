@@ -45,6 +45,7 @@ function ChatContent() {
   const { firestore, user } = useFirebase();
 
   const artisanIdFromUrl = searchParams.get('artisanId');
+  const lastUrlArtisanRef = useRef<string | null>(null);
 
   // Fetch live artisans
   const artisansRef = useMemoFirebase(
@@ -63,13 +64,18 @@ function ChatContent() {
   const artisanImage = PlaceHolderImages.find((img) => img.id === selectedArtisan?.imageId);
 
   useEffect(() => {
-    if (artisanIdFromUrl && allArtisans.length > 0 && !selectedArtisan) {
+    if (!artisanIdFromUrl) {
+      lastUrlArtisanRef.current = null;
+      return;
+    }
+    if (allArtisans.length > 0 && lastUrlArtisanRef.current !== artisanIdFromUrl) {
       const artisan = allArtisans.find(a => a.id === artisanIdFromUrl || a.slug === artisanIdFromUrl);
       if (artisan) {
+        lastUrlArtisanRef.current = artisanIdFromUrl;
         handleArtisanSelect(artisan.id);
       }
     }
-  }, [artisanIdFromUrl, allArtisans, selectedArtisan]);
+  }, [artisanIdFromUrl, allArtisans]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -221,7 +227,17 @@ function ChatContent() {
                 <h1 className="text-xl font-bold font-headline">{t('Connect with a Verified Artisan')}</h1>
             )}
             {selectedArtisan && (
-                 <Button variant="outline" size="sm" onClick={() => setSelectedArtisan(null)} className="rounded-full text-[10px] font-black uppercase tracking-widest border-primary/10">
+                 <Button
+                   variant="outline"
+                   size="sm"
+                   onClick={() => {
+                     setSelectedArtisan(null);
+                     if (artisanIdFromUrl) {
+                       router.replace('/chat');
+                     }
+                   }}
+                   className="rounded-full text-[10px] font-black uppercase tracking-widest border-primary/10"
+                 >
                     {t('Switch Artisan')}
                  </Button>
             )}

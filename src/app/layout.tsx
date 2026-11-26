@@ -14,6 +14,9 @@ import { Analytics } from '@vercel/analytics/react';
 export const metadata: Metadata = {
   title: 'GI Heritage Hub | India\'s Authentic Craft Marketplace',
   description: 'A verified marketplace for authentic Indian handcrafted goods protected by Geographical Indication (GI) tags.',
+  verification: {
+    google: 'm4P3-V36Q3zCMrbXn85Mtlf8eyWugFNWdwDrcH-Hszs',
+  },
 };
 
 export default function RootLayout({
